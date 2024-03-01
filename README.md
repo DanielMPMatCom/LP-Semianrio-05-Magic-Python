@@ -1,1 +1,1 @@
-# LP-Semianrio-05-Magic-Python
+# LP-Seminario-05-Magic-Python
