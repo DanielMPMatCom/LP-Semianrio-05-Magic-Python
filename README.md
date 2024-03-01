@@ -1,1 +1,1 @@
-# LP-Semianrio05-Magic-Python
+# LP-Semianrio-05-Magic-Python
