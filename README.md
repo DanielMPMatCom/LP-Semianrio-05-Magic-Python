@@ -30,7 +30,6 @@ class Matriz:
             fila, columna = map(int, attr.split('_')[1:])
             self.matriz[fila][columna] = valor
         else:
-            # super().__setattr__(attr, valor)
             object.__setattr__(self, attr, valor)
 
     def __iter__(self):
@@ -45,9 +44,6 @@ class Matriz:
 
     def __str__(self):
         return '\n'.join([' '.join(map(str, fila)) for fila in self.matriz])
-
-    # def _1_1 (self):
-    #     print("se vuelve loco?")
 
     def __add__(self, other):
         if self.filas != other.filas or self.columnas != other.columnas:
@@ -103,7 +99,7 @@ class Matriz:
     # 4 4
 ```
 
-1. Implemente la indización para la clase `Matriz` de forma tal que se puedan hacer construcciones como las siguientes: `a = matriz[0, 6]` o `matriz[1, 2] = 9`.
+2. Implemente la indización para la clase `Matriz` de forma tal que se puedan hacer construcciones como las siguientes: `a = matriz[0, 6]` o `matriz[1, 2] = 9`.
 
 ```python
     matrizA[1,1] = 10
@@ -115,7 +111,7 @@ class Matriz:
     # A[0,0]: 1
 ```
 
-1. Implemente la indización para la clase `Matriz` por medio de acceso a campos de la forma: `a = matriz._0_6` o `matriz._1_2 = 9`.
+3. Implemente la indización para la clase `Matriz` por medio de acceso a campos de la forma: `a = matriz._0_6` o `matriz._1_2 = 9`.
 
 ```python
     matrizA._0_0 = 100
@@ -127,7 +123,7 @@ class Matriz:
     # A[0,0]: 100
 ```
 
-1. Los objetos matrices deberán ser iterables. El iterador de una matriz con `n` filas y `m` columnas debe devolver los elementos en el siguiente orden: `matriz_1_1, matriz_1_2, ..., matriz_1_m, matriz_2_1, ..., matriz_n_m`
+4. Los objetos matrices deberán ser iterables. El iterador de una matriz con `n` filas y `m` columnas debe devolver los elementos en el siguiente orden: `matriz_1_1, matriz_1_2, ..., matriz_1_m, matriz_2_1, ..., matriz_n_m`
 
 ```python
     print(f"MatrizA: \n{matrizA}\n")
@@ -144,7 +140,7 @@ class Matriz:
     # 10
 ```
 
-1. Al tipo matriz se podrá aplicar siempre el método `as_type()` que devuelve una nueva matriz con todos los tipos convertidos al tipo `type`. Suponga que existe un constructor en `type` que convierte de cualquier tipo a type. Por ejemplo:
+5. Al tipo matriz se podrá aplicar siempre el método `as_type()` que devuelve una nueva matriz con todos los tipos convertidos al tipo `type`. Suponga que existe un constructor en `type` que convierte de cualquier tipo a type. Por ejemplo:
 
 ```c#
     m = Matriz(2, 3) # crea una matriz de int con valor 0s.
@@ -479,7 +475,48 @@ En Python, los métodos built-in son métodos que están disponibles en las clas
 
 La mayoría de los métodos built-in son funciones que llaman a los métodos mágicos de las clases, como `len()` que llama a `__len__`, `iter()` que llama a `__iter__`, `next()` que llama a `__next__`, entre otros. Algunos métodos built-in son funciones que realizan operaciones específicas, como `print()` que imprime un objeto en la consola, `type()` que devuelve el tipo de un objeto, `id()` que devuelve el identificador único de un objeto, entre otros.
 
+### Iteradores
+
+Los iteradores en Python son objetos que implementan los métodos `__iter__()` y `__next__()`, lo que les permite ser iterados (recorridos) a través de un bucle `for`. Los iteradores proporcionan una forma eficiente y elegante de acceder a elementos de una secuencia, como listas, tuplas, diccionarios, conjuntos, y otros objetos iterables.
+
+Un objeto iterador en Python debe cumplir con dos requisitos principales:
+
+1. **`__iter__()`**: Este método debe devolver el propio objeto iterador. Es llamado al iniciar la iteración y se espera que devuelva un objeto iterador.
+
+2. **`__next__()`**: Este método debe devolver el próximo elemento en la secuencia. Cuando no hay más elementos para iterar, se espera que levante la excepción `StopIteration`.
+
+Veamos un ejemplo usando iteradores y métodos built-in:
+
 ```python
+class Contador:
+    def __init__(self, limite):
+        self.limite = limite
+        self.valor = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.valor < self.limite:
+            resultado = self.valor
+            self.valor += 1
+            return resultado
+        else:
+            raise StopIteration
+
+# Crear un objeto iterador
+contador_iterador = Contador(5)
+# Utilizar el iterador en un bucle for
+for numero in contador_iterador:
+    print(numero)
+
+# Salida:
+# 0
+# 1
+# 2
+# 3
+# 4
+
 class Iterable:
     _index = 0
     def __init__(self, *args):
@@ -493,9 +530,9 @@ class Iterable:
         return self.valores[index]
 
 a = Iterable(1, 2, 3, 4, 5)
-print(len(a)) # Salida: 5
-print(list(a)) # funciona xq Iterable tiene el metodo __iter__ Salida: [1, 2, 3, 4, 5]
-print(list(reversed(a))) # funciona xq Iterable tiene el metodo __getitem__ Salida: [5, 4, 3, 2, 1]
+print(f"\nlenghth de a: {len(a)}")
+print(list(a)) # funciona xq Iterable tiene el metodo __iter__
+print(list(reversed(a))) # funciona xq Iterable tiene el metodo __getitem__
 
 ```
 
