@@ -259,10 +259,10 @@ written all this up..." - [Guido van Rossum](https://mail.python.org/pipermail/p
 `__new__` y `__init__` son ambos métodos mágicos en Python que se utilizan en la creación de objetos, pero tienen algunas diferencias clave:
 
 - `__new__` es el primer paso en la creación de un objeto. Toma la clase como primer argumento, seguido de cualquier otro argumento que se pase al constructor. Su principal responsabilidad es crear y devolver la nueva instancia del objeto. Este método es raramente sobrescrito, excepto en casos muy particulares o cuando se está manipulando aspectos de bajo nivel de la creación del objeto.
-
 - `__init__` es el segundo paso en la creación de un objeto, después de `__new__`. Toma la nueva instancia creada por `__new__` (que se pasa como el primer argumento, usualmente denominado `self`) y cualquier otro argumento que se pase al constructor, y lo utiliza para inicializar el objeto. Este es el método que se sobrescribe más comúnmente cuando se crea una nueva clase para definir cómo se inicializan los objetos de esa clase.
 
 En resumen, `__new__` se encarga de la creación del objeto, y `__init__` se encarga de la inicialización del objeto una vez creado.
+
 
 ```python
     class MiClase:
@@ -285,7 +285,6 @@ En resumen, `__new__` se encarga de la creación del objeto, y `__init__` se enc
 `__repr__` y `__str__` son ambos métodos mágicos en Python que se utilizan para representar un objeto de una manera legible. Ambos métodos son llamados cuando se utiliza la función `print()` para imprimir un objeto, pero hay algunas diferencias clave:
 
 - `__repr__` se utiliza para devolver la representación oficial de un objeto, si es posible debería ser una expresión válida de Python que pudiera utilizarse para recrear un objeto con el mismo valor (dado un entorno apropiado).
-
 - `__str__` se utiliza para devolver una representación legible de un objeto. Es llamado con la función `print()` o `str()`. Si no se define `__str__`, Python llamará a `__repr__` en su lugar.
 
 ```python
@@ -344,7 +343,7 @@ Métodos de comparación y su correspondencia con los operadores de comparación
     object.__ge__(self, other) # self >= other
 ```
 
-En ocasiones no es necesario tener explicitamente todas implementadas, ya que Python puede inferir el resultado de una operación de comparación a partir de otras. Por ejemplo, si `__eq__` y `__ne__` no están implementados, Python invocará `__lt__` y `__gt__` para determinar el resultado de `__ne__`.
+En ocasiones no es necesario tener explícitamente todas implementadas, ya que Python puede inferir el resultado de una operación de comparación a partir de otras. Por ejemplo, si `__eq__` y `__ne__` no están implementados, Python invocará `__lt__` y `__gt__` para determinar el resultado de `__ne__`.
 
 ```python
 
@@ -482,7 +481,6 @@ Los iteradores en Python son objetos que implementan los métodos `__iter__()` y
 Un objeto iterador en Python debe cumplir con dos requisitos principales:
 
 1. **`__iter__()`**: Este método debe devolver el propio objeto iterador. Es llamado al iniciar la iteración y se espera que devuelva un objeto iterador.
-
 2. **`__next__()`**: Este método debe devolver el próximo elemento en la secuencia. Cuando no hay más elementos para iterar, se espera que levante la excepción `StopIteration`.
 
 Veamos un ejemplo usando iteradores y métodos built-in:
@@ -535,6 +533,7 @@ print(list(a)) # funciona xq Iterable tiene el metodo __iter__
 print(list(reversed(a))) # funciona xq Iterable tiene el metodo __getitem__
 
 ```
+#### Método `eval()`
 
 El método `eval()` es un método built-in que evalúa una expresión en forma de cadena y devuelve el resultado. Puede ser útil en la construcción de AST o en la evaluación de expresiones dinámicas. Por ejemplo:
 
@@ -608,7 +607,6 @@ Explicación básica de cómo funcionan los decoradores en Python:
    ```
 
    En este caso, `mi_funcion` será pasada como argumento a la función `mi_decorador`.
-
 2. **Definición de un decorador:**
 
    Un decorador es simplemente una función en Python. Puede aceptar una función como argumento, realizar alguna acción, y luego devolver una función modificada o extender el comportamiento de la función original.
@@ -621,10 +619,9 @@ Explicación básica de cómo funcionan los decoradores en Python:
            print("Realizando acciones después de llamar a la función original")
        return funcion_modificada
    ```
-
 3. **Aplicación de un decorador:**
 
-   Puedes aplicar un decorador a una función utilizando la sintaxis `@`:
+   Se puede aplicar un decorador a una función utilizando la sintaxis `@`:
 
    ```python
    @mi_decorador
@@ -632,11 +629,10 @@ Explicación básica de cómo funcionan los decoradores en Python:
        print("¡Hola, mundo!")
    ```
 
-   En este caso, cuando llamas a `saludar()`, en realidad estás llamando a la versión modificada de la función creada por el decorador.
-
+   En este caso, cuando se llama a `saludar()`, en realidad se está llamando a la versión modificada de la función creada por el decorador.
 4. **Múltiples decoradores:**
 
-   Puedes aplicar múltiples decoradores a una función. En este caso, los decoradores se aplican de abajo a arriba:
+   Se pueden aplicar múltiples decoradores a una función. En este caso, los decoradores se aplican de abajo a arriba:
 
    ```python
    @decorador1
@@ -646,7 +642,6 @@ Explicación básica de cómo funcionan los decoradores en Python:
    ```
 
    En este ejemplo, primero se aplica `decorador2`, y luego `decorador1`.
-
 5. **Decoradores incorporados:**
 
    Python proporciona algunos decoradores incorporados, como `@staticmethod`, `@classmethod`, y `@property`. Estos son utilizados comúnmente en clases para definir métodos estáticos, de clase o propiedades.

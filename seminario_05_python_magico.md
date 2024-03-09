@@ -9,10 +9,10 @@ Todos los miembros del equipo deben participar en la solución del ejercicio y e
 En `Python` no existe el tipo predefinido `array` multidimensional.
 
 1. Implemente la clase `Matriz`, para representar matrices con las operaciones de suma y producto. Implemente además otras funcionalidades que crea necesarias.
-1. Implemente la indización para la clase `Matriz` de forma tal que se puedan hacer construcciones como las siguientes: `a = matriz[0, 6]` o `matriz[1, 2] = 9`.
-1. Implemente la indización para la clase `Matriz` por medio de acceso a campos de la forma: `a = matriz._0_6` o `matriz._1_2 = 9`.
-1. Los objetos matrices deberán ser iterables. El iterador de una matriz con `n` filas y `m` columnas debe devolver los elementos en el siguiente orden: `matriz_1_1, matriz_1_2, ..., matriz_1_m, matriz_2_1, ..., matriz_n_m`
-1. Al tipo matriz se podrá aplicar siempre el método `as_type()` que devuelve una nueva matriz con todos los tipos convertidos al tipo `type`. Suponga que existe un constructor en `type` que convierte de cualquier tipo a type. Por ejemplo:
+2. Implemente la indización para la clase `Matriz` de forma tal que se puedan hacer construcciones como las siguientes: `a = matriz[0, 6]` o `matriz[1, 2] = 9`.
+3. Implemente la indización para la clase `Matriz` por medio de acceso a campos de la forma: `a = matriz._0_6` o `matriz._1_2 = 9`.
+4. Los objetos matrices deberán ser iterables. El iterador de una matriz con `n` filas y `m` columnas debe devolver los elementos en el siguiente orden: `matriz_1_1, matriz_1_2, ..., matriz_1_m, matriz_2_1, ..., matriz_n_m`
+5. Al tipo matriz se podrá aplicar siempre el método `as_type()` que devuelve una nueva matriz con todos los tipos convertidos al tipo `type`. Suponga que existe un constructor en `type` que convierte de cualquier tipo a type. Por ejemplo:
 
 ```python
 m = Matriz(2, 3) # crea una matriz de int con valor 0s.
