@@ -1,5 +1,7 @@
 # Seminario 5: Python Mágico
 
+![Magic Python](images/magic.jpeg)
+
 [Problema a implementar](seminario_05_python_magico.md)
 
 [Ver notebook](main.ipynb)
@@ -697,3 +699,6 @@ Veamos un ejemplo sencillo y práctico de cómo se utiliza un decorador en Pytho
 En este ejemplo, `medir_tiempo` es un decorador que toma una función como argumento, define una nueva función (`wrapper`) que mide el tiempo de ejecución antes y después de llamar a la función original, e imprime el tiempo transcurrido.
 
 Cuando aplicamos `@medir_tiempo` sobre `ejemplo_funcion`, básicamente estamos diciendo que `ejemplo_funcion` ahora se ejecutará a través de la función `wrapper` del decorador `medir_tiempo`. Cuando llamamos a `ejemplo_funcion()`, en realidad estamos llamando a `wrapper`, y el tiempo de ejecución se imprime en la consola.
+
+
+![Magic Python](images/magic2.jpg)
